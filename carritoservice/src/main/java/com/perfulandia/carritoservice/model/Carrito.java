@@ -15,6 +15,7 @@ public class Carrito {
     private String metodoPago;
     private double cantidadProductos;
     private double precioTotal;
+    private String productos;
 }
 
 //buscar por codigo, eliminar, agregar, listar
