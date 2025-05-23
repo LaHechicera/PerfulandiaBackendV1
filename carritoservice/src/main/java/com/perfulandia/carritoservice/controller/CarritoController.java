@@ -42,6 +42,6 @@ public class CarritoController {
     //Nuevo metodo trayendo a producto
     @GetMapping("/producto/{id}")
     public Producto obtenerProducto(@PathVariable long id) {
-        return restTemplate.getForObject("http://localhost:8080/carrito/producto/" + id, Producto.class);
+        return restTemplate.getForObject("http://localhost:8082/carrito/producto/" + id, Producto.class);
     }
 }
