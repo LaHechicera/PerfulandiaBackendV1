@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class PedidoService {
 
+    private final PedidoRepository pedidoRepository;
     private PedidoRepository repo;
-    public PedidoService(PedidoRepository repo) {
+    public PedidoService(PedidoRepository repo, PedidoRepository pedidoRepository) {
         this.repo = repo;
+        this.pedidoRepository = pedidoRepository;
     }
 
     //Listado pedido
@@ -28,5 +30,10 @@ public class PedidoService {
         return repo.findById(id).orElseThrow(() ->
                 new RuntimeException("Pedido no encontrado"));
     }
+    //Eliminar
+    public void eliminar(long id){
+        repo.deleteById(id);
+    }
+
 
 }
