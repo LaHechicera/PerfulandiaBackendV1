@@ -10,6 +10,5 @@ public class Carrito {
     private long id;
     private String metodoPago;
     private double cantidadProductos;
-    private double precioTotal;
-    private String productos;
+    private String nombreProducto;
 }

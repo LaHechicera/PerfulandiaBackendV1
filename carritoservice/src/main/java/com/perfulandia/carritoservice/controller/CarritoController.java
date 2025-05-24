@@ -2,7 +2,6 @@ package com.perfulandia.carritoservice.controller;
 
 import com.perfulandia.carritoservice.model.Producto;
 import com.perfulandia.carritoservice.model.Carrito;
-import com.perfulandia.carritoservice.repository.CarritoRepository;
 import com.perfulandia.carritoservice.service.CarritoService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -27,18 +26,24 @@ public class CarritoController {
     public List<Carrito> listar() {
         return servicio.listar();
     }
+    //buscar por id
+    @GetMapping("/{id}")
+    public Carrito buscar(@PathVariable long id) {
+        return servicio.bucscarId(id);
+    }
 
-    //Guardar
+    //Guardar datos
     @PostMapping
     public Carrito guardar(@RequestBody Carrito carrito) {
         return servicio.guardar(carrito);
     }
-
+    //Eliminar carritos por id
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable long id) {
         servicio.eliminar(id);
     }
 
+<<<<<<< HEAD
     //Nuevo metodo trayendo a producto
     @GetMapping("/producto/{id}")
     public Producto obtenerProducto(@PathVariable long id) {
@@ -48,5 +53,12 @@ public class CarritoController {
     @GetMapping("/producto/listar")
     public Producto[] productos() {
         return restTemplate.getForObject("http://localhost:8082/productos", Producto[].class);
+=======
+    //Listar productos desde MS Producto
+    @GetMapping("/producto/lista")
+    public Producto[] productos() {
+        return restTemplate.getForObject("http://localhost:8082/api/productos", Producto[].class);
+>>>>>>> 9e496460be6cb1d217ca1e898ca4a414f0e63936
     }
+
 }

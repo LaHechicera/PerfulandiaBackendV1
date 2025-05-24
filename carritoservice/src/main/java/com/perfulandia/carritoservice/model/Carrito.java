@@ -11,11 +11,10 @@ import lombok.*;
 public class Carrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String metodoPago;
     private double cantidadProductos;
-    private double precioTotal;
-    private String productos;
+    private String nombreProducto;
 }
 
 //buscar por codigo, eliminar, agregar, listar
