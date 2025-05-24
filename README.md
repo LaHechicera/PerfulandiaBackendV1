@@ -11,7 +11,7 @@ Se esta implementando un nuevo sistema de ventas para la compañia Perfulandia S
 > 📝 La estructura del sistema está conformado por cuatro microservicios, que consta de un servicio de 'Usuario', que se encarga de generar el usuario como cliente, agregando sus datos al sistema, luego esta el servicio de 'Producto', que se enlaza al servicio 'Usuario' para relacionar los productos escogidos con el usuario. Después está el servicio de 'Carrito', que tambien se enlaza pero con el servicio de 'Producto' para agregar los datos de producto al carrito de compras, sumando en esté, atributos de cantidad de productos y un método de pago. Y finalmente un servicio de 'Pedido' enlazado al servicio de 'Carrito', que registrará con una id de pedido la información del estado del pedido, con la id de compra que fué generada por el carrito para buscar los productos dentro el pedido.
 
 La arquitectura del servicio de Perfulandia con sus servicios y clases:
-
+```
 Perfulandia./
 
 ├── pedidoservice/📦
@@ -60,7 +60,7 @@ Perfulandia./
 │   └── service📂
 │       └── UsuarioService.java
 └── 
-
+```
 ### Microservicios Desarrollados
 
 - `usuarioservice`: > 📝 Agrega nuevos usuarios.
