@@ -4,7 +4,7 @@ Este repositorio contiene el desarrollo técnico del sistema basado en microserv
 
 ## 📦 Descripción General del Proyecto
 
-> 📝 Se esta implementando un nuevo sistema de ventas para la compañia Perfulandia SPA, ya que su antigua sistema comenzo a fallar, presentando problemas de rendimiento y disponibilidad, nosotros al realizar el reemplazo del sistema monolitico vamos a beneficiar a la empresa dandoles un sistema con buena escalabilidad y eficiencia en el tiempo.
+Se esta implementando un nuevo sistema de ventas para la compañia Perfulandia SPA, ya que su antigua sistema comenzo a fallar, presentando problemas de rendimiento y disponibilidad, nosotros al realizar el reemplazo del sistema monolitico vamos a beneficiar a la empresa dandoles un sistema con buena escalabilidad y eficiencia en el tiempo.
 
 ## 🧩 Arquitectura de Microservicios
 
@@ -14,8 +14,8 @@ Este repositorio contiene el desarrollo técnico del sistema basado en microserv
 
 - `usuarioservice`: > 📝 Agrega nuevos usuarios.
 - `productoservice`: > 📝 Agrega o elimina productos.
-- `carritoservice`: > 📝 Crea carritos de compra, en base a la lista de productos en sistema.
-- `pedidoservice`: > 📝 Indicar el nombre y función del microservicio adicional implementado.
+- `carritoservice`: > 📝 Crea carritos de compra, en base a la lista de productos en base de datos.
+- `pedidoservice`: > 📝 Crea estados de pedidos, en base a la lista de carritos de la base de datos
 
 ## 🛠️ Tecnologías Utilizadas
 
@@ -49,21 +49,54 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ```
 Para cada microservicio contiene un diferente `server.port=8083`, para que asi no hayan errores al momento de dar inicio a los microservisios en simultaneo.
 
+## Definicion de Tablas y campos
+Cada microservicio cuenta con una tabla en la base de datos local y columnas donde se almacenan los datos que se requieren.
 
-> 📝  y qué tablas y campos definieron para cada microservicio.
+- Microservicio Usuario: este contiene la tabla usuario, en la cual se deben rellenar los datos de "nombre", "correo" y "rol".
+- Microservicio Producto: tiene la tabla producto, donde se rellenan los datos de "nombre", "precio" y "stock".
+- Microservicio Carrito: contiene la tabla carrito, donde se rellenan los datos de "cantidad_productos", "metodo_pago" y "nombre_producto".
+- Microservicio Pedido: contiene la tabla pedido, se rellenan los siguientes campos "id_numero_pedido" y "estado_pedido"
+
 
 ## 📮 Endpoints y Pruebas
 
-> 📝 Especificar los principales endpoints disponibles por microservicio (CRUD y llamadas entre servicios).  
-> Incluir capturas o descripciones de pruebas realizadas con Postman (mínimo 3 por servicio).
+Endpoints Microservicio Usuario
+- GET: http://localhost:8081/api/v1/usuario
+- GET por id: http://localhost:8081/api/v1/usuario/{id}
+- POST: http://localhost:8081/api/v1/usuario
+- DELETE: http://localhost:8081/api/v1/usuario/{id}
+
+Endpoints Microservicio Producto
+- GET: http://localhost:8082/api/producto
+- GET por id: http://localhost:8082/api/producto/{id}
+- GET id a MS Usuario: http://localhost:8082/api/producto/usuario/{id}
+- POST: http://localhost:8082/api/producto
+- DELETE por id: http://localhost:8082/api/producto/{id}
+
+Endpoints Microservicio Carrito
+- GET: http://localhost:8083/api/carrito
+- GET por id: http://localhost:8083/api/carrito/{id}
+- GET lista a MS Productos: http://localhost:8083/api/carrito/producto/lista
+- POST: http://localhost:8083/api/carrito
+- DELETE: http://localhost:8083/api/carrito
+
+Endpoints Microservicio Pedido
+- GET: http://localhost:8084/api/pedido
+- GET por id: http://localhost:8084/api/pedido/{id}
+- GET lista a MS Carrito: http://localhost:8084/api/pedido/estado
+- GET id a MS Carrito: http://localhost:8084/api/pedido/estado/{id}
+- POST: http://localhost:8084/api/pedido
+- DELETE: http://localhost:8084/api/pedido
+
 
 ## 🔁 CI/CD (Integración y Entrega Continua)
 
-> 📝 Explicar qué herramienta usaron (GitHub Actions, Vercel, etc.) y qué flujo automatizado implementaron (por ejemplo: `push` → `test` → `deploy`).
+Todo el trabajo realizado anteriormente, fue publicado en un repositorio en GitHub herramienta que nos ayudó a trabajar colaborativamente en los diferentes microservicios gracias a la creación de ramas para cada integrante del equipo.
+
+Se realizaron `push` constantes por parte de los colaboradores, para mantener lo más actualizado el repositorio y la rama `master`.
+
 
 ## 🧑‍💻 Integrantes del Equipo
-
-> 📝 Indicar nombre completo y rol de cada integrante del equipo.
 
 | Nombre                  | Rol en el proyecto         | Servicio principal trabajado |
 |-------------------------|----------------------------|------------------------------|
@@ -74,7 +107,7 @@ Para cada microservicio contiene un diferente `server.port=8083`, para que asi n
 
 El repositorio cuenta con 5 carpetas las cuales 4 corresponden a los diferentes microservicios, cada uno con su propio `pom.xml`, carpeta src la cual contiene los archivos principales para que los micro servicios funcionen y puedan conectarse a la base de datos.
 
-A continuacion se observa como se ve el repositorio
+A continuacion se observa como se ve el repositorio.
 ```
 
 📦 PerfulandiaBackendV1
@@ -93,7 +126,8 @@ Primero que todo se realizo la creación del repositorio en GitHub y se crearon 
 
 Como equipo consideramos que la mejor manera de trabajar colaborativamente fue la comunicacion, los que nos ayudo a coordinar commits frecuentemente cada vez que se realizaba avance en cualquier microservicio.
 
-> 📝 Explicar cómo se organizó el trabajo en ramas (`main`, `develop`, `usuario-service`, etc.), frecuencia de commits y cómo se coordinaron como equipo.
+Se realizaron `push` constantes por parte de los colaboradores, para mantener lo más actualizado el repositorio y la rama `master`.
+
 
 ## 📈 Lecciones Aprendidas
 
