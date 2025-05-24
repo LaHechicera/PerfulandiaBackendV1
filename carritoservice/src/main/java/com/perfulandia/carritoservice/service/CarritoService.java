@@ -30,6 +30,9 @@ public class CarritoService {
         carritoRepo.deleteById(id);
     }
 
+    public Carrito bucscarId(long id){
+        return carritoRepo.findById(id).orElse(null);
+    }
     //Agregar productos al carro
     //Esta en veremos :v
 

@@ -26,22 +26,21 @@ public class CarritoController {
     public List<Carrito> listar() {
         return servicio.listar();
     }
+    //buscar por id
+    @GetMapping("/{id}")
+    public Carrito buscar(@PathVariable long id) {
+        return servicio.bucscarId(id);
+    }
 
-    //Guardar
+    //Guardar datos
     @PostMapping
     public Carrito guardar(@RequestBody Carrito carrito) {
         return servicio.guardar(carrito);
     }
-
+    //Eliminar carritos por id
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable long id) {
         servicio.eliminar(id);
-    }
-
-    //Nuevo metodo trayendo a producto
-    @GetMapping("/producto/{id}")
-    public Producto obtenerProducto(@PathVariable long id) {
-        return restTemplate.getForObject("http://localhost:8082/api/productos/" + id, Producto.class);
     }
 
     //Listar productos desde MS Producto
