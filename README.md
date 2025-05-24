@@ -8,7 +8,58 @@ Se esta implementando un nuevo sistema de ventas para la compañia Perfulandia S
 
 ## 🧩 Arquitectura de Microservicios
 
-> 📝 Describir cómo está estructurado el sistema en microservicios. Pueden incluir un diagrama (opcional) y explicar brevemente la función de cada servicio.
+> 📝 La estructura del sistema está conformado por cuatro microservicios, que consta de un servicio de 'Usuario', que se encarga de generar el usuario como cliente, agregando sus datos al sistema, luego esta el servicio de 'Producto', que se enlaza al servicio 'Usuario' para relacionar los productos escogidos con el usuario. Después está el servicio de 'Carrito', que tambien se enlaza pero con el servicio de 'Producto' para agregar los datos de producto al carrito de compras, sumando en esté, atributos de cantidad de productos y un método de pago. Y finalmente un servicio de 'Pedido' enlazado al servicio de 'Carrito', que registrará con una id de pedido la información del estado del pedido, con la id de compra que fué generada por el carrito para buscar los productos dentro el pedido.
+
+La arquitectura del servicio de Perfulandia con sus servicios y clases:
+
+Perfulandia./
+
+├── pedidoservice/📦
+│   └── controller📂
+│       └── PedidoController.java
+│   └── model📂
+│       └── Carrito.java
+│       └── Pedido.java
+│   └── repository📂
+│       └── PedidoRepository.java
+│   └── service📂
+│       └── PedidoService.java
+└── 
+
+├── carritoservice/📦
+│   └── controller📂
+│       └── CarritoController.java
+│   └── model📂
+│       └── Carrito.java
+│       └── Producto.java
+│   └── repository📂
+│       └── CarritoRepository.java
+│   └── service📂
+│       └── CarritoService.java
+└── 
+
+├── productservice/📦
+│   └── controller📂
+│       └── ProductoController.java
+│   └── model📂
+│       └── Usuario.java
+│       └── Producto.java
+│   └── repository📂
+│       └── ProductoRepository.java
+│   └── service📂
+│       └── ProductoService.java
+└── 
+
+├── usuarioservice/📦
+│   └── controller📂
+│       └── UsuarioController.java
+│   └── model📂
+│       └── Usuario.java
+│   └── repository📂
+│       └── UsuarioRepository.java
+│   └── service📂
+│       └── UsuarioService.java
+└── 
 
 ### Microservicios Desarrollados
 
@@ -87,14 +138,6 @@ Endpoints Microservicio Pedido
 - GET id a MS Carrito: http://localhost:8084/api/pedido/estado/{id}
 - POST: http://localhost:8084/api/pedido
 - DELETE: http://localhost:8084/api/pedido
-
-
-## 🔁 CI/CD (Integración y Entrega Continua)
-
-Todo el trabajo realizado anteriormente, fue publicado en un repositorio en GitHub herramienta que nos ayudó a trabajar colaborativamente en los diferentes microservicios gracias a la creación de ramas para cada integrante del equipo.
-
-Se realizaron `push` constantes por parte de los colaboradores, para mantener lo más actualizado el repositorio y la rama `master`.
-
 
 ## 🧑‍💻 Integrantes del Equipo
 
