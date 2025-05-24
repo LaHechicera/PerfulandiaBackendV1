@@ -43,22 +43,10 @@ public class CarritoController {
         servicio.eliminar(id);
     }
 
-<<<<<<< HEAD
-    //Nuevo metodo trayendo a producto
-    @GetMapping("/producto/{id}")
-    public Producto obtenerProducto(@PathVariable long id) {
-        return restTemplate.getForObject("http://localhost:8082/productos/" + id, Producto.class);
-    }
-
-    @GetMapping("/producto/listar")
-    public Producto[] productos() {
-        return restTemplate.getForObject("http://localhost:8082/productos", Producto[].class);
-=======
     //Listar productos desde MS Producto
     @GetMapping("/producto/lista")
     public Producto[] productos() {
         return restTemplate.getForObject("http://localhost:8082/api/productos", Producto[].class);
->>>>>>> 9e496460be6cb1d217ca1e898ca4a414f0e63936
     }
 
 }
